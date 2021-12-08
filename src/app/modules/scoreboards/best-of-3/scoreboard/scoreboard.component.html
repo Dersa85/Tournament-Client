@@ -1,0 +1,32 @@
+
+<div
+class="scoreboard"
+[style.transform]="scale$ | async">
+
+    <div class="rounds-container">
+        <ng-container *ngFor="let round of (board$ | async)?.rounds; index as i">
+            <div
+            class="round"
+            [style.background-color]="ROUND_COLORS[round]"
+            *ngIf="i < 3">
+            {{i + 1}}
+        </div>
+        </ng-container>
+    </div>
+    
+    <div class="timer">
+        {{(board$ | async)?.countdown?.timeLeft | timeLeft}}
+    </div>
+    
+    <div class="rounds-container">
+        <ng-container *ngFor="let round of (board$ | async)?.rounds; index as i">
+            <div
+            class="round"
+            [style.background-color]="ROUND_COLORS[round]"
+            *ngIf="i >= 3">
+            {{i + 1}}
+        </div>
+        </ng-container>
+    </div>
+    
+</div>

@@ -1,0 +1,26 @@
+
+<h1 mat-dialog-title>Neues Board erstellen</h1>
+
+<div mat-dialog-content class="mat-typography">
+    <form [formGroup]="form" (submit)="createBoard()">
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Anzeigetafel</mat-label>
+            <mat-select formControlName="board" value="BestOf3Board">
+                <mat-option value="BestOf3Board">BestOf3Board</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-dialog-actions align="end">
+            <button mat-raised-button color="primary">Erstellen</button>
+            <button mat-raised-button mat-dialog-close>Abbrechen</button>
+        </mat-dialog-actions>
+        
+    </form>
+
+    
+      
+</div>

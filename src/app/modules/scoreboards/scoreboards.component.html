@@ -1,0 +1,16 @@
+<div>
+    <h1>Overview</h1>
+</div>
+
+<h2>-Best of 3-</h2>
+<div *ngFor="let bestOf3Board of (allBoards$ | async)?.BestOf3Board | keyvalue">
+    <h3>{{bestOf3Board.value.name}}</h3>
+    <button routerLink="./best-of-3/control/{{bestOf3Board.key}}">Steuerung</button>
+    <button routerLink="best-of-3/scoreboard/{{bestOf3Board.key}}">Punktetafel</button>
+</div>
+
+<button mat-raised-button color="primary" (click)="openNewBoardDialog()">Neues Board</button>
+
+<br>
+<br>
+{{allBoards$ | async | json}}

@@ -1,0 +1,37 @@
+<div class="board">
+    <app-scoreboard></app-scoreboard>
+</div>
+
+<div *ngIf="(board$ | async); let board" class="control">
+    
+    <div class="time-control">
+        <h2 class="title">Zeit</h2>
+        <div class="total-time">
+            <span>{{board?.countdown?.totalTime | timeLeft}}</span>
+            <button mat-raised-button (click)="changeTotalTime()">Zeit Ändern</button>
+        </div>
+        <div class="time-main-control">
+            <button mat-raised-button color="primary" (click)="startCountdown()">Starten</button>
+            <button mat-raised-button color="accent" (click)="stopCountdown()">Pausieren</button>
+        </div>
+        <button mat-raised-button color="warn" (click)="resetCountdown()">Timer Reseten</button>
+    </div>
+
+    <div class="round-control">
+        <h2 class="title">Runde</h2>
+        <div class="winner-btn-container">
+            <button [disabled]="board.rounds[5] != 0" class="red-btn" mat-raised-button (click)="setNextWinner(1)">ROT</button>
+            <button [disabled]="board.rounds[5] != 0" class="blue-btn" mat-raised-button (click)="setNextWinner(2)">BLAU</button>
+        </div>
+        <button class="draw-btn" mat-raised-button (click)="setNextWinner(3)">Unentschieden</button>
+        <button [disabled]="board.rounds[0] == 0" mat-raised-button color="warn" (click)="removeLastWinner()">Runde zurücksetzen</button>
+        
+    </div>
+    
+    <div class="back-button-container">
+        <button class="reset-btn" mat-raised-button color="warn" (click)="resetBoard()">Komplett resetten</button>
+        <button mat-raised-button (click)="backToOverview()">Zurück zur Übersicht</button>
+    </div>
+</div>
+
+
