@@ -10,7 +10,7 @@
         <mat-form-field appearance="fill">
             <mat-label>Anzeigetafel</mat-label>
             <mat-select formControlName="board" value="BestOf3Board">
-                <mat-option value="BestOf3Board">BestOf3Board</mat-option>
+                <mat-option *ngFor="let type of boardService.BOARD_TYPES" [value]="type">{{type}}</mat-option>
             </mat-select>
         </mat-form-field>
 

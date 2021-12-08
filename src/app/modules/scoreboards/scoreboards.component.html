@@ -3,14 +3,25 @@
 </div>
 
 <h2>-Best of 3-</h2>
-<div *ngFor="let bestOf3Board of (allBoards$ | async)?.BestOf3Board | keyvalue">
+<div *ngFor="let bestOf3Board of (allBestOf3Boards$ | async) | keyvalue">
     <h3>{{bestOf3Board.value.name}}</h3>
     <button routerLink="./best-of-3/control/{{bestOf3Board.key}}">Steuerung</button>
     <button routerLink="best-of-3/scoreboard/{{bestOf3Board.key}}">Punktetafel</button>
+</div>
+
+<h2>-Team Point-</h2>
+<div *ngFor="let teamPointBoard of (allTeamPointBoards$ | async) | keyvalue">
+    <h3>{{teamPointBoard.value.name}}</h3>
+    <button routerLink="./best-of-3/control/{{teamPointBoard.key}}">Steuerung</button>
+    <button routerLink="best-of-3/scoreboard/{{teamPointBoard.key}}">Punktetafel</button>
 </div>
 
 <button mat-raised-button color="primary" (click)="openNewBoardDialog()">Neues Board</button>
 
 <br>
 <br>
-{{allBoards$ | async | json}}
+{{allBestOf3Boards$ | async | json}}
+<br>
+----------------------------------------
+<br>
+{{allTeamPointBoards$ | async | json}}

@@ -15,6 +15,11 @@ export class BoardService {
   SCOREBOARD_HEIGHT = 180;
   SCOREBOARD_WIDTH = 320;
 
+  BOARD_TYPES = [
+    'BestOf3Board',
+    'TeamPoint'
+  ]
+
   boardType?: string;
   boardId?: string;
 
