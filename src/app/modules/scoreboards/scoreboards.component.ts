@@ -18,10 +18,8 @@ export class ScoreboardsComponent {
   constructor(
     private socket: Socket,
     public dialog: MatDialog,
-    // public boardService: BoardService
     ) {
     this.socket.emit('getAllBoards');
-    // this.allBoards$ = this.allBoards()
   }
 
   sendMessage(msg: string) {

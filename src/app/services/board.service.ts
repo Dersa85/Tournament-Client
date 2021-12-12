@@ -17,7 +17,7 @@ export class BoardService {
 
   BOARD_TYPES = [
     'BestOf3Board',
-    'TeamPoint'
+    'TeamPointBoard'
   ]
 
   boardType?: string;
