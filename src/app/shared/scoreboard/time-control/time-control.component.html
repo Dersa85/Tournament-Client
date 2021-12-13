@@ -1,0 +1,12 @@
+<div *ngIf="board$ | async as board" class="time-control">
+    <h2 class="title">Zeit</h2>
+    <div class="total-time">
+        <span>{{board?.countdown?.totalTime | timeLeft}}</span>
+        <button mat-raised-button (click)="changeTotalTime()">Zeit Ändern</button>
+    </div>
+    <div class="time-main-control">
+        <button mat-raised-button color="primary" (click)="startCountdown()">Starten</button>
+        <button mat-raised-button color="accent" (click)="stopCountdown()">Pausieren</button>
+    </div>
+    <button mat-raised-button color="warn" (click)="resetCountdown()">Timer Reseten</button>
+</div>

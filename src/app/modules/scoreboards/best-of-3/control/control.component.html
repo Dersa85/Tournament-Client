@@ -4,18 +4,7 @@
 
 <div *ngIf="(board$ | async); let board" class="control">
     
-    <div class="time-control">
-        <h2 class="title">Zeit</h2>
-        <div class="total-time">
-            <span>{{board?.countdown?.totalTime | timeLeft}}</span>
-            <button mat-raised-button (click)="changeTotalTime()">Zeit Ändern</button>
-        </div>
-        <div class="time-main-control">
-            <button mat-raised-button color="primary" (click)="startCountdown()">Starten</button>
-            <button mat-raised-button color="accent" (click)="stopCountdown()">Pausieren</button>
-        </div>
-        <button mat-raised-button color="warn" (click)="resetCountdown()">Timer Reseten</button>
-    </div>
+    <app-time-control></app-time-control>
 
     <div class="round-control">
         <h2 class="title">Runde</h2>
