@@ -2,11 +2,11 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-scoreboard-container',
-  templateUrl: './scoreboard-container.component.html',
-  styleUrls: ['./scoreboard-container.component.sass']
+  selector: 'app-team-points-scoreboard-container',
+  templateUrl: './team-points-scoreboard-container.component.html',
+  styleUrls: ['./team-points-scoreboard-container.component.sass']
 })
-export class ScoreboardContainerComponent {
+export class TeamPointsScoreboardContainerComponent {
 
   @HostListener('document:keydown.escape', ['$event'])
   keyhandler(_event: KeyboardEvent) {

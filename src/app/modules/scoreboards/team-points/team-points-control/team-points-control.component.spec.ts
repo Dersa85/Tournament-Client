@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ControlComponent } from './control.component';
+import { ControlComponent } from './team-points-control.component';
 
 describe('ControlComponent', () => {
   let component: ControlComponent;

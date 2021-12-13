@@ -12,8 +12,8 @@
 <h2>-Team Point-</h2>
 <div *ngFor="let teamPointBoard of (allTeamPointBoards$ | async) | keyvalue">
     <h3>{{teamPointBoard.value.name}}</h3>
-    <button routerLink="./best-of-3/control/{{teamPointBoard.key}}">Steuerung</button>
-    <button routerLink="best-of-3/scoreboard/{{teamPointBoard.key}}">Punktetafel</button>
+    <button routerLink="./team-point/control/{{teamPointBoard.key}}">Steuerung</button>
+    <button routerLink="team-point/scoreboard/{{teamPointBoard.key}}">Punktetafel</button>
 </div>
 
 <button mat-raised-button color="primary" (click)="openNewBoardDialog()">Neues Board</button>

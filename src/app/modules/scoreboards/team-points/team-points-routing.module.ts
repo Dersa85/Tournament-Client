@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ControlComponent } from './control/control.component';
-import { ScoreboardContainerComponent } from './scoreboard-container/scoreboard-container.component';
+import { TeamPointsControlComponent } from './team-points-control/team-points-control.component';
+import { TeamPointsScoreboardContainerComponent } from './team-points-scoreboard-container/team-points-scoreboard-container.component';
 
 const routes: Routes = [
   {
     path: 'scoreboard/:id',
-    component: ScoreboardContainerComponent
+    component: TeamPointsScoreboardContainerComponent
   },
   {
     path: 'control/:id',
-    component: ControlComponent
+    component: TeamPointsControlComponent
   }
 ];
 

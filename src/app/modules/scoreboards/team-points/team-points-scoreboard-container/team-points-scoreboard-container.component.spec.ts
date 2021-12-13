@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ScoreboardContainerComponent } from './scoreboard-container.component';
+import { ScoreboardContainerComponent } from './team-points-scoreboard-container.component';
 
 describe('ScoreboardContainerComponent', () => {
   let component: ScoreboardContainerComponent;

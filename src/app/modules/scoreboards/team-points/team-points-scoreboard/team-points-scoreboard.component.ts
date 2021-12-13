@@ -1,19 +1,19 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { TeamPoint } from 'src/app/interfaces/boards-interfaces';
+import { TeamPointBoard } from 'src/app/interfaces/boards-interfaces';
 import { BoardService } from 'src/app/services/board.service';
 
 @Component({
-  selector: 'app-scoreboard',
-  templateUrl: './scoreboard.component.html',
-  styleUrls: ['./scoreboard.component.sass']
+  selector: 'app-team-points-scoreboard',
+  templateUrl: './team-points-scoreboard.component.html',
+  styleUrls: ['./team-points-scoreboard.component.sass']
 })
-export class ScoreboardComponent {
+export class TeamPointsScoreboardComponent {
 
-  BORD_TYPE = 'TeamPionts';
+  BORD_TYPE = 'TeamPointBoard';
 
-  board$!: Observable<TeamPoint>;
+  board$!: Observable<TeamPointBoard>;
   scale$!: Observable<string>;
 
   constructor(

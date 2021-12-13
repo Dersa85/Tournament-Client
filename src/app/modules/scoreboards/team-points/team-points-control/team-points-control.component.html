@@ -1,0 +1,46 @@
+
+<div class="board">
+    <app-team-points-scoreboard></app-team-points-scoreboard>
+</div>
+
+<div *ngIf="(board$ | async); let board" class="control">
+
+    <app-time-control></app-time-control>
+
+    <form (submit)="addPoints()" class="points" [formGroup]="addPointsForm">
+        <h2>Punkte hinzufügen</h2>
+        <div class="inputs">
+
+            <div class="team" formArrayName="redPoints">
+                <h3>Team Rot</h3>
+                <mat-form-field  *ngFor="let redPoint of redPoints.controls; index as i;" >
+                    <mat-label>Punkterichter {{i+1}}</mat-label>
+                    <input
+                    min="0"
+                    matInput
+                    [formControlName]="i"
+                    type="number"
+                    placeholder="Team Rot">
+                </mat-form-field>
+            </div>
+
+            <div class="team" formArrayName="bluePoints">
+                <h3>Team Rot</h3>
+                <mat-form-field *ngFor="let redPoint of bluePoints.controls; index as i;" >
+                    <mat-label>Punkterichter {{i+1}}</mat-label>
+                    <input
+                    min="0"
+                    matInput
+                    [formControlName]="i"
+                    type="number"
+                    placeholder="Team Rot">
+                </mat-form-field>
+            </div>
+
+        </div>
+        <button [disabled]="addPointsForm.invalid" type="submit" mat-raised-button color="primary">Punkte hinzufügen</button>
+        
+    </form>
+    <button type="button" class="reset-btn" mat-raised-button color="Accent" (click)="resetBoard()">Komplett zurücksetzen</button>
+
+</div>

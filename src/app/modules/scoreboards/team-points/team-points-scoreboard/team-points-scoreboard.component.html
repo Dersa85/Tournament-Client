@@ -1,0 +1,19 @@
+<div
+class="scoreboard"
+[style.transform]="scale$ | async">
+
+    <div class="points-container">
+
+        <ng-container *ngIf="(board$ | async) as board">
+            <div class="point team-{{i}}" *ngFor="let point of board?.points; index as i">
+                <span>{{point}}</span>
+            </div>
+        </ng-container>
+        
+    </div>
+
+    <div class="time-container">
+        <span>{{(board$ | async)?.countdown?.timeLeft | timeLeft}}</span>
+    </div>
+
+</div>

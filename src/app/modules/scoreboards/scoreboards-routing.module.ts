@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'best-of-3',
     loadChildren: () => import('./best-of-3/best-of-3.module').then(m => m.BestOf3Module),
+  },
+  {
+    path: 'team-point',
+    loadChildren: () => import('./team-points/team-points.module').then(m => m.TeamPointsModule),
   }
 ];
 
