@@ -41,6 +41,7 @@
         <button [disabled]="addPointsForm.invalid" type="submit" mat-raised-button color="primary">Punkte hinzufügen</button>
         
     </form>
-    <button type="button" class="reset-btn" mat-raised-button color="Accent" (click)="resetBoard()">Komplett zurücksetzen</button>
+    <button type="button" class="btn" mat-raised-button color="warn" (click)="resetBoard()">Komplett zurücksetzen</button>
+    <button type="button" class="btn" mat-raised-button color="accent" (click)="backToOverview()">Zurück zur Übersicht</button>
 
 </div>
