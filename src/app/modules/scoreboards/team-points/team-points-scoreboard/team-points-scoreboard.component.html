@@ -4,8 +4,8 @@ class="scoreboard"
 
     <div class="points-container">
 
-        <ng-container *ngIf="(board$ | async) as board">
-            <div class="point team-{{i}}" *ngFor="let point of board?.points; index as i">
+        <ng-container *ngIf="(points$ | async) as points">
+            <div class="point team-{{i}}" *ngFor="let point of points; index as i">
                 <span>{{point}}</span>
             </div>
         </ng-container>

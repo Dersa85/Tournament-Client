@@ -1,17 +1,17 @@
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { BoardService } from './../../../../services/board.service';
-import { MatDialog } from '@angular/material/dialog';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TeamPointBoard } from 'src/app/interfaces/boards-interfaces';
 import { first } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-team-points-control',
   templateUrl: './team-points-control.component.html',
   styleUrls: ['./team-points-control.component.sass']
 })
-export class TeamPointsControlComponent implements OnInit {
+export class TeamPointsControlComponent {
 
   addPointsForm = this.fb.group({
     redPoints: this.fb.array([
@@ -26,17 +26,19 @@ export class TeamPointsControlComponent implements OnInit {
     ], [Validators.required])
   })
 
+  
   board$!: Observable<TeamPointBoard>;
 
   constructor(
     private boardService: BoardService,
-    private fb: FormBuilder
-  ) { }
-
-  ngOnInit(): void {
+    private fb: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     this.board$ = this.boardService.board;
   }
 
+  
   get redPoints(): FormArray {
     return this.addPointsForm.get('redPoints') as FormArray;
   }
@@ -47,21 +49,22 @@ export class TeamPointsControlComponent implements OnInit {
 
   addPoints() {
     this.board$.pipe(first()).subscribe( (board: TeamPointBoard) => {
-      board.points[0] += this.getSumAndSetZero(this.redPoints);
-      board.points[1] += this.getSumAndSetZero(this.bluePoints);
+      board.points[0] += this.getAverageAndSetZero(this.redPoints);
+      board.points[1] += this.getAverageAndSetZero(this.bluePoints);
       this.boardService.updateBoard(board);
     })
   }
 
-  getSumAndSetZero(formArray: FormArray): number {
+  getAverageAndSetZero(formArray: FormArray): number {
     const array = formArray.controls;
     let totalValue = 0;
-    for (let i = 0; i < array.length; i++) {
+    let arrayLength = array.length;
+    for (let i = 0; i < arrayLength; i++) {
       const pointControl = array[i];
       totalValue += pointControl.value;
       pointControl.setValue(0);
     }
-    return totalValue;
+    return Math.floor(totalValue / (arrayLength));
   }
 
   resetBoard() {
@@ -72,6 +75,10 @@ export class TeamPointsControlComponent implements OnInit {
       board.countdown.timeLeft = board.countdown.totalTime;
       this.boardService.updateBoard(board);
     })
+  }
+
+  backToOverview() {
+    this.router.navigate(['../../../'], {relativeTo: this.route})
   }
 
 }
