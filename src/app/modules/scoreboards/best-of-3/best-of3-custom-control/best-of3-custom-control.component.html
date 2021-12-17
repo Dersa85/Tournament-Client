@@ -1,0 +1,9 @@
+<ng-container *ngIf="(board$ | async) as board" >
+    <h2 class="title">Runde</h2>
+    <div class="winner-btn-container">
+        <button [disabled]="board.rounds[5] != 0" class="red-btn" mat-raised-button (click)="setRoundWinner(1)">ROT</button>
+        <button [disabled]="board.rounds[5] != 0" class="blue-btn" mat-raised-button (click)="setRoundWinner(2)">BLAU</button>
+    </div>
+    <button class="draw-btn" mat-raised-button (click)="setRoundWinner(3)">Unentschieden</button>
+    <button [disabled]="board.rounds[0] == 0" mat-raised-button color="warn" (click)="removeLastWinner()">Runde zurücksetzen</button>
+</ng-container>

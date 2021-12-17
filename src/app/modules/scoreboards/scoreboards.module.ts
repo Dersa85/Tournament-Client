@@ -7,7 +7,7 @@ import { ScoreboardsComponent } from './scoreboards.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
-import { NewBoardDialogComponent } from './new-board-dialog/new-board-dialog.component';
+import { NewBoardDialogComponent } from '../../shared/dialog/new-board-dialog/new-board-dialog.component';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 
 

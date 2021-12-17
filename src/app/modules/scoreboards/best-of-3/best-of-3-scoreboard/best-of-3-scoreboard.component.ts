@@ -5,11 +5,11 @@ import { BestOf3Board } from 'src/app/interfaces/boards-interfaces';
 import { BoardService } from 'src/app/services/board.service';
 
 @Component({
-  selector: 'app-scoreboard',
-  templateUrl: './scoreboard.component.html',
-  styleUrls: ['./scoreboard.component.sass']
+  selector: 'app-best-of-3-scoreboard',
+  templateUrl: './best-of-3-scoreboard.component.html',
+  styleUrls: ['./best-of-3-scoreboard.component.sass']
 })
-export class ScoreboardComponent {
+export class BestOf3ScoreboardComponent {
   ROUND_COLORS = [
     'WHITE',  // neutral
     'RED',    // team 1 win

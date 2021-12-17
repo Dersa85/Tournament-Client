@@ -1,0 +1,9 @@
+<ng-container *ngIf="(board$ | async) as board">
+    <h2>Pausenzeit ({{board.breakTime.totalTime | timeLeft}})</h2>
+    <button class="edit-btn" mat-mini-fab (click)="changeTotalTime()"><mat-icon>edit</mat-icon></button>
+    <div class="time-container">
+        <span>Übrige Zeit: {{board.breakTime.timeLeft | timeLeft}}</span>
+        <button *ngIf="board.breakTime.isTimeRunning == false" (click)="startCountdown()" mat-raised-button color="primary">Starten</button>
+        <button *ngIf="board.breakTime.isTimeRunning == true" (click)="resetCountdown()" mat-raised-button color="accent">Reset</button>
+    </div>
+</ng-container>

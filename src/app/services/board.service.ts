@@ -30,28 +30,43 @@ export class BoardService {
 
   constructor(public socket: Socket) { }
   
-
   getCalcScale(host: HTMLElement): number {
     const ratioWidth = this.calcRatio(this.SCOREBOARD_WIDTH, host.offsetWidth);
     const ratioHeight = this.calcRatio(this.SCOREBOARD_HEIGHT, host.offsetHeight);
     return Math.min(ratioWidth, ratioHeight);
   }
   
-  startCountdown() {
-    this.socket.emit('startCountdown', this.boardType, this.boardId)
+  startCountdown(countdownType: string): void {
+    this.socket.emit('startCountdown', this.boardType, this.boardId, countdownType)
   }
   
-  stopCountdown() {
-    this.socket.emit('stopCountdown', this.boardType, this.boardId)
+  stopCountdown(countdownType: string) {
+    this.socket.emit('stopCountdown', this.boardType, this.boardId, countdownType)
   }
   
-  resetCountdown() {
-    this.socket.emit('resetCountdown', this.boardType, this.boardId)
+  resetCountdown(countdownType: string) {
+    this.socket.emit('resetCountdown', this.boardType, this.boardId, countdownType)
   }
 
-  updateBoard(board: any) {
-    this.socket.emit('updateBoard', this.boardType, this.boardId, board)
+  updateTotalCountdown(countdownType: string, newValue: number): void {
+    this.socket.emit('updateTotalCountdown', this.boardType, this.boardId, countdownType, newValue)
   }
+
+  resetScoreboard(): void {
+    this.socket.emit('resetScoreboard', this.boardType, this.boardId)
+  }
+
+  setRoundWinner(value: number): void {
+    this.socket.emit('setWinner', this.boardType, this.boardId, value)
+  }
+  
+  removeLastWinner(): void {
+    this.socket.emit('removeLastWinner', this.boardType, this.boardId)
+  }
+
+  // updateBoard(board: any) {
+  //   this.socket.emit('updateBoard', this.boardType, this.boardId, board)
+  // }
   
   setScoreboardSize(host: HTMLElement): void {
     const scoreboard = host.getElementsByClassName('scoreboard')[0] as HTMLElement;
@@ -81,6 +96,10 @@ export class BoardService {
       this.setScoreboardSize(host);
       window.dispatchEvent(new Event('resize'))
     }, 1);
+  }
+
+  updateTeamPoints(teamPoints: [number, number]): void {
+    this.socket.emit('updateTeamPoints', this.boardType, this.boardId, teamPoints)
   }
 
   get board(): Observable<any> {

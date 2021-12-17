@@ -6,11 +6,11 @@ import { TeamPointBoard } from 'src/app/interfaces/boards-interfaces';
 import { BoardService } from 'src/app/services/board.service';
 
 @Component({
-  selector: 'app-team-points-scoreboard',
-  templateUrl: './team-points-scoreboard.component.html',
-  styleUrls: ['./team-points-scoreboard.component.sass']
+  selector: 'app-team-point-scoreboard',
+  templateUrl: './team-point-scoreboard.component.html',
+  styleUrls: ['./team-point-scoreboard.component.sass']
 })
-export class TeamPointsScoreboardComponent {
+export class TeamPointScoreboardComponent {
 
   BORD_TYPE = 'TeamPointBoard';
 

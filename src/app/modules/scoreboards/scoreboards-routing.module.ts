@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'team-point',
-    loadChildren: () => import('./team-points/team-points.module').then(m => m.TeamPointsModule),
+    loadChildren: () => import('./team-point/team-point.module').then(m => m.TeamPointModule),
   }
 ];
 

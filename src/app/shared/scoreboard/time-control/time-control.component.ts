@@ -11,6 +11,8 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class TimeControlComponent implements OnInit {
 
+  countdownType = 'countdown';
+
   board$!: Observable<any>;
   constructor(
     private boardService : BoardService,
@@ -22,19 +24,19 @@ export class TimeControlComponent implements OnInit {
   }
 
   changeTotalTime() {
-    this.dialog.open(DialogChangeTotalTimeComponent);
+    this.dialog.open(DialogChangeTotalTimeComponent,  {data: 'countdown'});
   }
 
   stopCountdown(): void {
-    this.boardService.stopCountdown();
+    this.boardService.stopCountdown(this.countdownType);
   }
 
   startCountdown(): void {
-    this.boardService.startCountdown();
+    this.boardService.startCountdown(this.countdownType);
   }
 
   resetCountdown(): void {
-    this.boardService.resetCountdown();
+    this.boardService.resetCountdown(this.countdownType);
   }
 
 }

@@ -1,9 +1,9 @@
 import { FormBuilder, Validators } from '@angular/forms';
 import { BoardService } from 'src/app/services/board.service';
 import { Observable } from 'rxjs';
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { first } from 'rxjs/operators';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-change-total-time',
@@ -21,12 +21,15 @@ export class DialogChangeTotalTimeComponent {
   constructor(
     private dialogRef: MatDialogRef<DialogChangeTotalTimeComponent>,
     private boardService: BoardService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: string,
     ) {
+      console.log("!!!!!!!!!!!!!!!!!!!!!", data);
+      
     this.board$ = this.boardService.board
     this.board$.pipe(first()).subscribe((board:any) => {
-      this.form.get('minutes')?.setValue(Math.floor(board.countdown.totalTime / 1000 / 60));
-      this.form.get('seconds')?.setValue(Math.floor(board.countdown.totalTime % (1000 * 60) / 1000));
+      this.form.get('minutes')?.setValue(Math.floor(board[this.data].totalTime / 1000 / 60));
+      this.form.get('seconds')?.setValue(Math.floor(board[this.data].totalTime % (1000 * 60) / 1000));
     })
   }
 
@@ -49,15 +52,8 @@ export class DialogChangeTotalTimeComponent {
 
   save() {
     const total = (this.form.get('minutes')?.value * 60 + this.form.get('seconds')?.value) * 1000
-    
-    this.board$.pipe(first()).subscribe((board:any) => {
-      board.countdown.totalTime = total;
-      if (board.countdown.isTimeRunning == false) {
-        board.countdown.timeLeft = total;
-      }
-      this.boardService.updateBoard(board);
-      this.close()
-    })
+    this.boardService.updateTotalCountdown(this.data, total);
+    this.close()
   }
 
   close() {

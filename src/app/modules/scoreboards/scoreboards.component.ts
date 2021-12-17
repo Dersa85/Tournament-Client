@@ -2,7 +2,7 @@ import { Socket } from 'ngx-socket-io';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { NewBoardDialogComponent } from './new-board-dialog/new-board-dialog.component';
+import { NewBoardDialogComponent } from '../../shared/dialog/new-board-dialog/new-board-dialog.component';
 import { BestOf3Boards, TeamPointBoards } from 'src/app/interfaces/boards-interfaces';
 
 @Component({

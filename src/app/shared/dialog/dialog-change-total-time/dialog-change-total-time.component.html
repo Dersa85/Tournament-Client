@@ -1,11 +1,11 @@
 <h2 mat-dialog-title>Rundenzeit ändern</h2>
 <mat-dialog-content class="mat-typography">
-    <p>Aktuelle Rundenzeit: {{(board$ | async).countdown.totalTime | timeLeft}}</p>
+    <p>Aktuelle Zeit: {{(board$ | async)[data].totalTime | timeLeft}}</p>
 
     <form (submit)="save()" [formGroup]="form">
         <mat-form-field appearance="fill">
             <mat-label>Minuten</mat-label>
-            <input matInput type="number" formControlName="minutes">
+            <input matInput type="number" formControlName="minutes" (change)="timeChanged()">
         </mat-form-field>
         
         <mat-form-field appearance="fill">

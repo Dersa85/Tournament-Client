@@ -15,7 +15,7 @@
         </mat-form-field>
 
         <mat-dialog-actions align="end">
-            <button mat-raised-button color="primary">Erstellen</button>
+            <button [disabled]="form.invalid" mat-raised-button color="primary">Erstellen</button>
             <button mat-raised-button mat-dialog-close>Abbrechen</button>
         </mat-dialog-actions>
         

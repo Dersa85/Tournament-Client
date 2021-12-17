@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ScoreboardComponent } from './team-points-scoreboard.component';
+import { BreakTimeControlComponent } from './break-time-control.component';
 
-describe('ScoreboardComponent', () => {
-  let component: ScoreboardComponent;
-  let fixture: ComponentFixture<ScoreboardComponent>;
+describe('BreakTimeControlComponent', () => {
+  let component: BreakTimeControlComponent;
+  let fixture: ComponentFixture<BreakTimeControlComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ScoreboardComponent ]
+      declarations: [ BreakTimeControlComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ScoreboardComponent);
+    fixture = TestBed.createComponent(BreakTimeControlComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

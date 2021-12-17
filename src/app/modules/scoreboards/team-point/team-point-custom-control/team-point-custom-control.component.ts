@@ -1,17 +1,16 @@
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
-import { BoardService } from './../../../../services/board.service';
-import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TeamPointBoard } from 'src/app/interfaces/boards-interfaces';
 import { first } from 'rxjs/operators';
-import { ActivatedRoute, Router } from '@angular/router';
+import { TeamPointBoard } from 'src/app/interfaces/boards-interfaces';
+import { BoardService } from 'src/app/services/board.service';
 
 @Component({
-  selector: 'app-team-points-control',
-  templateUrl: './team-points-control.component.html',
-  styleUrls: ['./team-points-control.component.sass']
+  selector: 'app-team-point-custom-control',
+  templateUrl: './team-point-custom-control.component.html',
+  styleUrls: ['./team-point-custom-control.component.sass']
 })
-export class TeamPointsControlComponent {
+export class TeamPointCustomControlComponent implements OnInit {
 
   addPointsForm = this.fb.group({
     redPoints: this.fb.array([
@@ -26,19 +25,17 @@ export class TeamPointsControlComponent {
     ], [Validators.required])
   })
 
-  
   board$!: Observable<TeamPointBoard>;
 
   constructor(
     private boardService: BoardService,
-    private fb: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {
+    private fb: FormBuilder
+  ) { }
+
+  ngOnInit(): void {
     this.board$ = this.boardService.board;
   }
 
-  
   get redPoints(): FormArray {
     return this.addPointsForm.get('redPoints') as FormArray;
   }
@@ -49,9 +46,10 @@ export class TeamPointsControlComponent {
 
   addPoints() {
     this.board$.pipe(first()).subscribe( (board: TeamPointBoard) => {
-      board.points[0] += this.getAverageAndSetZero(this.redPoints);
-      board.points[1] += this.getAverageAndSetZero(this.bluePoints);
-      this.boardService.updateBoard(board);
+      const points = board.points
+      points[0] += this.getAverageAndSetZero(this.redPoints);
+      points[1] += this.getAverageAndSetZero(this.bluePoints);
+      this.boardService.updateTeamPoints(board.points)
     })
   }
 
@@ -65,20 +63,6 @@ export class TeamPointsControlComponent {
       pointControl.setValue(0);
     }
     return Math.floor(totalValue / (arrayLength));
-  }
-
-  resetBoard() {
-    this.board$.pipe(first()).subscribe((board: TeamPointBoard) => {
-      board.points[0] = 0;
-      board.points[1] = 0;
-      board.countdown.isTimeRunning = false;
-      board.countdown.timeLeft = board.countdown.totalTime;
-      this.boardService.updateBoard(board);
-    })
-  }
-
-  backToOverview() {
-    this.router.navigate(['../../../'], {relativeTo: this.route})
   }
 
 }

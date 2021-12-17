@@ -1,0 +1,16 @@
+
+<ng-content class="scoreboard" select="[scoreboard]"></ng-content>
+
+<div class="control">
+    <div class="time-control">
+        <ng-content select="[breakTime]"></ng-content>
+        <ng-content select="[timeControl]"></ng-content>
+    </div>
+    <div class="secound-container">
+        <ng-content select="[customControl]"></ng-content>
+        <div class="main-control">
+            <button mat-raised-button color="warn" (click)="resetScoreboard()">Alles Reset</button>
+            <button mat-raised-button color="accent" (click)="backToOverview()">Verlassen</button>
+        </div>
+    </div>
+</div>

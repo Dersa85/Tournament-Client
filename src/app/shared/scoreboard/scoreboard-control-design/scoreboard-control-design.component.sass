@@ -1,0 +1,58 @@
+:host
+    display: flex
+    align-items: center
+    height: 100vh
+    width: 100vw
+    overflow: hidden
+    min-width: 250px
+
+    .control
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+
+        .time-control
+            width: 100%
+        
+        .secound-container
+
+            .main-control
+                border: 1px solid #9b9b9b
+                border-radius: 0.5rem
+                background-color: #00000031
+                min-width: 250px
+                display: flex
+                justify-content: space-evenly
+                align-items: center
+                padding: 0.5rem 0 0.5rem 0
+
+@media (orientation: landscape)
+    :host
+        
+        .scoreboard
+            height: 100vh
+            flex: 1
+
+@media (orientation: portrait)
+    :host
+        flex-direction: column
+
+        .scoreboard
+            height: 100%
+            width: 100vw
+
+    @media (min-width: 550px)
+        .control
+
+            .time-control
+                display: flex
+                
+            .secound-container
+                width: 100%
+                display: flex
+                justify-content: space-around
+
+                .main-control
+                    margin: 0
+
