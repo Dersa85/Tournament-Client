@@ -1,12 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ScoreboardsComponent } from './modules/scoreboards/scoreboards.component';
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   redirectTo: '/overview',
+  //   pathMatch: 'full'
+  // },
   {
     path: '',
-    component: ScoreboardsComponent,
+    loadChildren: () => import('./modules/main/main.module').then(m => m.MainModule),
     pathMatch: 'full'
+  },
+  {
+    path: 'scoreboards',
+    loadChildren: () => import('./modules/scoreboards/scoreboards.module').then(m => m.ScoreboardsModule)
+  },
+  {
+    path: 'organization',
+    loadChildren: () => import('./modules/organization/organization.module').then(m => m.OrganizationModule)
   }
 ];
 

@@ -1,0 +1,13 @@
+
+<h1>Genres</h1>
+
+<div *ngFor="let group of groups$ | async">
+    <h2>{{ group | json }}</h2>
+</div>
+
+<button mat-raised-button (click)="goToCategoryEditor()">Kategorien bearbeiten</button>
+
+
+
+
+{{ groups$ | async | json }}

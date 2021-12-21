@@ -1,3 +1,4 @@
+import { DialogModule } from 'src/app/shared/dialog/dialog.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -7,7 +8,6 @@ import { ScoreboardsComponent } from './scoreboards.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
-import { NewBoardDialogComponent } from '../../shared/dialog/new-board-dialog/new-board-dialog.component';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 
 
@@ -15,7 +15,6 @@ import { MaterialModule } from 'src/app/shared/material/material.module';
 @NgModule({
   declarations: [
     ScoreboardsComponent,
-    NewBoardDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -23,6 +22,7 @@ import { MaterialModule } from 'src/app/shared/material/material.module';
     ScoreboardsRoutingModule,
     PipesModule,
     ReactiveFormsModule,
+    DialogModule
   ]
 })
 export class ScoreboardsModule { }

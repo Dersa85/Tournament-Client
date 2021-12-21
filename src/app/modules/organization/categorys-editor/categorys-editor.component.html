@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>Gruppen Editor</h2>
+<mat-dialog-content class="mat-typography">
+  {{ form.value|json }}
+
+  <h3>Gruppenname:</h3>
+  <input [(ngModel)]="groupName">
+
+  <form [formGroup]="form" >
+      <table>
+        
+        <tr formArrayName="titles">
+            <th *ngFor="let title of titles.controls; index as i" >
+                <input [formControlName]="i">
+                <span>{{title.value}}</span>
+                <button mat-icon-button (click)="removeColumn(i)">
+                    <mat-icon>remove</mat-icon>
+                </button>
+            </th>
+            
+            <button mat-icon-button (click)="addColumn()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </tr>
+        
+        <ng-container formArrayName="members"></ng-container>
+        <tr *ngFor="let memberValues of members.controls; index as i" >
+            <td formArray="i" *ngFor="let value of getMember(i).controls; index as j">
+                <input [formControl]="getMemberValue(i, j)">
+            </td>
+        </tr>
+        
+      </table>
+
+      <button mat-icon-button (click)="addMember()">
+        <mat-icon>add</mat-icon>
+      </button>
+
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+</mat-dialog-actions>

@@ -3,11 +3,9 @@ import { Socket } from 'ngx-socket-io';
 import { BehaviorSubject, fromEvent, Observable, Subject, Subscriber, Subscription } from 'rxjs';
 import { map} from 'rxjs/operators';
 
-
 @Injectable({
   providedIn: 'root',
 })
-
 
 @Injectable()
 export class BoardService {

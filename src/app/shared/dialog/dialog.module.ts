@@ -1,3 +1,4 @@
+import { NewBoardDialogComponent } from './new-board-dialog/new-board-dialog.component';
 import { PipesModule } from './../pipes/pipes.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -8,17 +9,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    DialogChangeTotalTimeComponent
+    DialogChangeTotalTimeComponent,
+    NewBoardDialogComponent,
   ],
   imports: [
     CommonModule,
     MaterialModule,
     PipesModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: [
-    DialogChangeTotalTimeComponent
+    DialogChangeTotalTimeComponent,
+    NewBoardDialogComponent
   ]
 })
 export class DialogModule { }
