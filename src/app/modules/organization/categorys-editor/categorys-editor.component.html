@@ -2,43 +2,55 @@
 <mat-dialog-content class="mat-typography">
   {{ form.value|json }}
 
-  <h3>Gruppenname:</h3>
-  <input [(ngModel)]="groupName">
-
-  <form [formGroup]="form" >
+    <mat-form-field appearance="legacy">
+        <mat-label>Gruppenname</mat-label>
+        <input matInput placeholder="Gruppenname" [(ngModel)]="groupName">
+    </mat-form-field>
+  
+  <form [formGroup]="form">
+    <mat-form-field appearance="fill">
+        <mat-label>Gruppenname</mat-label>
+        <input matInput placeholder="Gruppenname" formControlName="groupName">
+    </mat-form-field>
       <table>
         
         <tr formArrayName="titles">
             <th *ngFor="let title of titles.controls; index as i" >
-                <input [formControlName]="i">
-                <span>{{title.value}}</span>
+                
+                <mat-form-field appearance="fill">
+                    <mat-label>Kategorie {{i+1}}</mat-label>
+                    <input matInput placeholder="Gruppenname" [formControlName]="i">
+                </mat-form-field>
                 <button mat-icon-button (click)="removeColumn(i)">
-                    <mat-icon>remove</mat-icon>
+                    <mat-icon>delete</mat-icon>
                 </button>
             </th>
             
             <button mat-icon-button (click)="addColumn()">
-                <mat-icon>add</mat-icon>
+                <mat-icon>add_chart</mat-icon>
             </button>
         </tr>
         
         <ng-container formArrayName="members"></ng-container>
         <tr *ngFor="let memberValues of members.controls; index as i" >
             <td formArray="i" *ngFor="let value of getMember(i).controls; index as j">
-                <input [formControl]="getMemberValue(i, j)">
+                <mat-form-field appearance="fill">
+                    <mat-label>Wert</mat-label>
+                    <input matInput placeholder="Gruppenname" [formControl]="getMemberValue(i, j)">
+                </mat-form-field>
             </td>
         </tr>
         
       </table>
 
       <button mat-icon-button (click)="addMember()">
-        <mat-icon>add</mat-icon>
+        <mat-icon>person_add</mat-icon>
       </button>
 
   </form>
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+  <button mat-button mat-dialog-close>Abbrechen</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Speichern</button>
 </mat-dialog-actions>

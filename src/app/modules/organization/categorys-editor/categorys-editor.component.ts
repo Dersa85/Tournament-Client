@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-categorys-editor',
@@ -12,14 +12,13 @@ export class CategorysEditorComponent implements OnInit {
   
   form = this.fb.group({
     groupName: this.fb.control('', [], []),
-    titles: this.fb.array([]),
+    titles: this.fb.array([['', [], []]]),
     members: this.fb.array([])
     })
     
     constructor(private fb: FormBuilder) { }
   
     ngOnInit(): void {
-      console.log(this.titles)
     }
   
     get titles(): FormArray {
@@ -42,7 +41,6 @@ export class CategorysEditorComponent implements OnInit {
       return this.fb.array([], [], []);
     }
 
-
     private createEmptyControl(): FormControl {
       return this.fb.control('', [], []);
     }
@@ -60,7 +58,6 @@ export class CategorysEditorComponent implements OnInit {
       
       for (let i = 0; i < titlesLength; i++) {
         member.push(this.createEmptyControl());
-        
       }
     }
   
@@ -73,6 +70,12 @@ export class CategorysEditorComponent implements OnInit {
     }
   
     removeColumn(i: number): void {
+      this.titles.removeAt(i)
+      this.members.controls.forEach( memberValues => {
+        const memberValuesArray = memberValues as FormArray
+        memberValuesArray.removeAt(i)
+      });
+      
     }
 
 }
