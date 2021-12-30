@@ -1,35 +1,41 @@
-<div>
-    <h1>Übersicht</h1>
-</div>
-
-<ng-container *ngIf="allBestOf3Boards$ | async as allBestOf3Boards">
-    <ng-container *ngIf="(allBestOf3Boards | json) != ({} | json)">
-        <h2>-Best of 3-</h2>
-        <div class="board" *ngFor="let bestOf3Board of allBestOf3Boards | keyvalue">
-            <h3>{{bestOf3Board.value.name}}</h3>
-            <button routerLink="./best-of-3/control/{{bestOf3Board.key}}">Steuerung</button>
-            <button routerLink="best-of-3/scoreboard/{{bestOf3Board.key}}">Punktetafel</button>
-        </div>
+<div class="main">
+    <h1>Punktetafel Übersicht</h1>
+    
+    <ng-container *ngIf="allBestOf3Boards$ | async as allBestOf3Boards">
+        <ng-container *ngIf="(allBestOf3Boards | json) != ({} | json)">
+            <h2>-Best of 3-</h2>
+            <div class="board" *ngFor="let bestOf3Board of allBestOf3Boards | keyvalue">
+                <h3>{{bestOf3Board.value.name}}:</h3>
+                <div>
+                    <button mat-stroked-button color="primary" routerLink="./best-of-3/control/{{bestOf3Board.key}}">Steuerung</button>
+                    <button mat-stroked-button color="primary" routerLink="./best-of-3/scoreboard/{{bestOf3Board.key}}">Punktetafel</button>
+                </div>
+            </div>
+        </ng-container>
     </ng-container>
-</ng-container>
-
-<ng-container *ngIf="allTeamPointBoards$ | async as allTeamPointBoards">
-    <ng-container *ngIf="(allTeamPointBoards | json) != ({} | json)">
-        <h2>-Team Point-</h2>
-        <div class="board" *ngFor="let teamPointBoard of allTeamPointBoards | keyvalue">
-            <h3>{{teamPointBoard.value.name}}</h3>
-            <button routerLink="./team-point/control/{{teamPointBoard.key}}">Steuerung</button>
-            <button routerLink="team-point/scoreboard/{{teamPointBoard.key}}">Punktetafel</button>
-        </div>
+    
+    <ng-container *ngIf="allTeamPointBoards$ | async as allTeamPointBoards">
+        <ng-container *ngIf="(allTeamPointBoards | json) != ({} | json)">
+            <h2>-Team Point-</h2>
+            <div class="board" *ngFor="let teamPointBoard of allTeamPointBoards | keyvalue">
+                <h3>{{teamPointBoard.value.name}}</h3>
+                <button routerLink="./team-point/control/{{teamPointBoard.key}}">Steuerung</button>
+                <button routerLink="team-point/scoreboard/{{teamPointBoard.key}}">Punktetafel</button>
+            </div>
+        </ng-container>
     </ng-container>
-</ng-container>
-
-<button mat-raised-button color="primary" (click)="openNewBoardDialog()">Neues Board</button>
-
-<!-- <br>
-<br>
+    
+    <div class="nav-btn-container">
+        <button mat-raised-button (click)="openNewBoardDialog()">Neues Board</button>
+        <button mat-raised-button color="accent" (click)="navigateBack()">Zurück</button>
+    </div>
+    
+    <!-- <br>
+        <br>
 {{allBestOf3Boards$ | async | json}}
 <br>
 ----------------------------------------
 <br>
 {{allTeamPointBoards$ | async | json}} -->
+
+</div>

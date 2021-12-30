@@ -1,6 +1,7 @@
+import { Countdown } from './../../../../server/modules/interfaces/board-interface';
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
-import { BehaviorSubject, fromEvent, Observable, Subject, Subscriber, Subscription } from 'rxjs';
+import { BehaviorSubject, fromEvent, Observable, Subscription } from 'rxjs';
 import { map} from 'rxjs/operators';
 
 @Injectable({
@@ -18,15 +19,73 @@ export class BoardService {
     'TeamPointBoard'
   ]
 
+  soundBeginBattle = new Audio();
+  soundEndBattle = new Audio();
+  soundBreakTimeEnd = new Audio();
+  soundBattleTimeEnds = new Audio();
+
   boardType?: string;
   boardId?: string;
 
   boardSubsctiption?:Subscription;
+  countdownSubscription?: Subscription
+  breakTimeSubscription?: Subscription
 
   private board$: BehaviorSubject<any> = new BehaviorSubject(null)
   private transformScale$!: Observable<string>;
 
-  constructor(public socket: Socket) { }
+  constructor(public socket: Socket) {
+    this.loadSounds();
+    this.checkTimeForSounds();
+  }
+
+  loadSounds() {
+    this.soundBeginBattle.src = '/assets/sounds/kampf_beginn.wav';
+    this.soundEndBattle.src = '/assets/sounds/kampf_ende.wav';
+    this.soundBreakTimeEnd.src = '/assets/sounds/pause_ende.wav';
+    this.soundBattleTimeEnds.src = '/assets/sounds/zeit_knapp.wav';
+    this.soundBeginBattle.load();
+    this.soundEndBattle.load();
+    this.soundBreakTimeEnd.load();
+    this.soundBattleTimeEnds.load();
+  }
+
+  checkTimeForSounds() {
+    // all times in ms
+    const timeEnding = 11 * 1000;
+    const ended = 0.99 * 1000; // max 0.99 secounds
+    
+    let lastCountdownTime = 9999999999;
+    let lastBreakTime = 9999999999;
+    
+    this.board$.subscribe((board: any) => {
+      
+      if (board) {
+
+        if (board.countdown) {
+          const countdown: Countdown = board.countdown
+          
+          if (countdown.timeLeft < countdown.totalTime && lastCountdownTime == countdown.totalTime)
+          this.soundBeginBattle.play()
+          
+          if (countdown.timeLeft <= timeEnding && lastCountdownTime > timeEnding && countdown.isTimeRunning)
+          this.soundBattleTimeEnds.play()
+          
+          if (countdown.timeLeft == countdown.totalTime && lastCountdownTime < ended )
+          this.soundEndBattle.play();
+          
+          lastCountdownTime = countdown.timeLeft;
+        }
+        if (board.breakTime) {
+          const breakTime: Countdown = board.breakTime;
+          if (breakTime.timeLeft == breakTime.totalTime && lastBreakTime < ended) {
+            this.soundBreakTimeEnd.play();
+          }
+          lastBreakTime = breakTime.timeLeft;
+        }
+      }
+      })
+  }
   
   getCalcScale(host: HTMLElement): number {
     const ratioWidth = this.calcRatio(this.SCOREBOARD_WIDTH, host.offsetWidth);
@@ -73,15 +132,11 @@ export class BoardService {
   }
   
   setBoard(board: string, id: string): void {
-    this.boardType = board
-    this.boardId = id
-    if (this.boardSubsctiption) {
-      this.boardSubsctiption.unsubscribe()
-    }
-    this.boardSubsctiption = this.socket.fromEvent(`board/${board}/${id}`).subscribe((value: any) => {
-      this.board$.next(value)
-    })
-    this.socket.emit('getBord', board, id )
+    this.boardType = board;
+    this.boardId = id;
+    this.unsubscribeBoard();
+    this.subscribeNewBoard(board, id);
+    this.socket.emit('getBord', board, id );
   }
   
   setTransformScale(host: HTMLElement): void {
@@ -111,4 +166,15 @@ export class BoardService {
   private calcRatio(elementSize: number, viewportSize: number): number {
     return viewportSize / elementSize;
   }
+
+  unsubscribeBoard() {
+    if (this.boardSubsctiption) this.boardSubsctiption.unsubscribe();
+  }
+
+  subscribeNewBoard(board: string, id: string) {
+    this.boardSubsctiption = this.socket.fromEvent(`board/${board}/${id}`).subscribe((value: any) => {
+      this.board$.next(value);
+    })
+  }
+
 }

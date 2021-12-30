@@ -15,7 +15,7 @@ export class DialogChangeTotalTimeComponent {
   board$!: Observable<any>;
   form = this.fb.group({
     minutes: [0, [Validators.required]],
-    seconds: [0, [Validators.required]],
+    seconds: [0, [Validators.required, Validators.min(1)]],
   })
 
   constructor(

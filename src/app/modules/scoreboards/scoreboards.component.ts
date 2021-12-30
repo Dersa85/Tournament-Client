@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { NewBoardDialogComponent } from '../../shared/dialog/new-board-dialog/new-board-dialog.component';
 import { BestOf3Boards, TeamPointBoards } from 'src/app/interfaces/boards-interfaces';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-overview',
@@ -18,6 +19,8 @@ export class ScoreboardsComponent {
   constructor(
     private socket: Socket,
     public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
     ) {
     this.socket.emit('getAllBoards');
   }
@@ -32,6 +35,10 @@ export class ScoreboardsComponent {
 
   openNewBoardDialog() {
     this.dialog.open(NewBoardDialogComponent);
+  }
+
+  navigateBack() {
+    this.router.navigate(['./..'], {relativeTo: this.route})
   }
 
 }

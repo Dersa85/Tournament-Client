@@ -23,6 +23,7 @@ import { MaterialModule } from 'src/app/shared/material/material.module';
     PipesModule,
     ReactiveFormsModule,
     DialogModule
-  ]
+  ],
+  
 })
 export class ScoreboardsModule { }
