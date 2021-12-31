@@ -2,6 +2,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { GroupsService } from './../../services/groups.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-organization',
@@ -15,8 +16,10 @@ export class OrganizationComponent {
   constructor(
     private groupService: GroupsService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private socket: Socket
   ) {
+    this.socket.emit('getAllGroups');
     this.groups$ = this.groupService.groups;
   }
 

@@ -1,13 +1,10 @@
 
 <h1>Genres</h1>
 
-<div *ngFor="let group of groups$ | async">
-    <h2>{{ group | json }}</h2>
+<div *ngFor="let group of groups$ | async | keyvalue">
+    <h2>{{ group.key }}: {{ group.value | json }}</h2>
 </div>
 
-<button mat-raised-button (click)="goToCategoryEditor()">Kategorien bearbeiten</button>
-
-
-
+<button mat-raised-button (click)="goToCategoryEditor()">Neue Kategorie</button>
 
 {{ groups$ | async | json }}

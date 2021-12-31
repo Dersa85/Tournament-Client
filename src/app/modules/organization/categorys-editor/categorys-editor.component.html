@@ -1,56 +1,89 @@
 <h2 mat-dialog-title>Gruppen Editor</h2>
-<mat-dialog-content class="mat-typography">
-  {{ form.value|json }}
+<div class="group">
 
-    <mat-form-field appearance="legacy">
-        <mat-label>Gruppenname</mat-label>
-        <input matInput placeholder="Gruppenname" [(ngModel)]="groupName">
-    </mat-form-field>
+  {{ form.value|json }}
+  
+  <!-- <mat-form-field appearance="legacy">
+    <mat-label>Gruppenname</mat-label>
+    <input matInput placeholder="Gruppenname" [(ngModel)]="groupName">
+  </mat-form-field> -->
   
   <form [formGroup]="form">
-    <mat-form-field appearance="fill">
-        <mat-label>Gruppenname</mat-label>
-        <input matInput placeholder="Gruppenname" formControlName="groupName">
+    <mat-form-field appearance="legacy">
+      <mat-label>Gruppenname</mat-label>
+      <input matInput placeholder="Gruppenname" formControlName="groupName">
     </mat-form-field>
-      <table>
-        
-        <tr formArrayName="titles">
-            <th *ngFor="let title of titles.controls; index as i" >
-                
-                <mat-form-field appearance="fill">
-                    <mat-label>Kategorie {{i+1}}</mat-label>
-                    <input matInput placeholder="Gruppenname" [formControlName]="i">
-                </mat-form-field>
-                <button mat-icon-button (click)="removeColumn(i)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </th>
-            
-            <button mat-icon-button (click)="addColumn()">
-                <mat-icon>add_chart</mat-icon>
+    <table>
+      
+      <tr formArrayName="titles">
+        <th *ngFor="let title of titles.controls; index as i"
+            [class.hoverColumn]="i == hoverColumn"
+            [class.borderBottom]="i == hoverColumn && members.length == 0">
+          
+          <div class="table-header">
+            <button (mouseenter)="setMouseHoverColumn(i)"
+                    (mouseleave)="setMouseHoverColumn(-1)"
+                    mat-icon-button (click)="removeColumn(i)"
+                    matTooltip="Kategorie löschen">
+              <mat-icon>delete</mat-icon>
             </button>
-        </tr>
+            <mat-form-field appearance="legacy">
+              <mat-label>Kategorie {{i+1}}</mat-label>
+              <input matInput placeholder="Kategorie" [formControlName]="i">
+            </mat-form-field>
+          </div>
+        </th>
+        <button class="add-cart-btn"
+                mat-icon-button
+                (click)="addColumn()"
+                matTooltip="Kategorie hinzufügen">
+          <mat-icon>add_chart</mat-icon>
+        </button>
+              
+      </tr>
         
-        <ng-container formArrayName="members"></ng-container>
-        <tr *ngFor="let memberValues of members.controls; index as i" >
-            <td formArray="i" *ngFor="let value of getMember(i).controls; index as j">
-                <mat-form-field appearance="fill">
-                    <mat-label>Wert</mat-label>
-                    <input matInput placeholder="Gruppenname" [formControl]="getMemberValue(i, j)">
-                </mat-form-field>
-            </td>
-        </tr>
+      <!-- <ng-container formArrayName="members"></ng-container> -->
+      <tr *ngFor="let memberValues of members.controls; index as i;
+                  last as lastColumn;
+                  first as firstColumn" >
+        <td [class.hoverColumn]="j == hoverColumn"
+            [class.lastColumn]="j == hoverColumn && lastColumn"
+            [class.hoverRow]="i == hoverRow"
+            [class.hoverRowFirst]="i == hoverRow && firstRow"
+            [class.hoverRowLast]="i == hoverRow && lastRow"
+            formArray="i"
+            *ngFor="let value of getMember(i).controls; index as j;
+                    last as lastRow;
+                    first as firstRow">
+          <mat-form-field appearance="legacy">
+            <mat-label>Wert</mat-label>
+            <input matInput placeholder="Wert" [formControl]="getMemberValue(i, j)">
+          </mat-form-field>
+        </td>
+        <button mat-icon-button
+                (mouseenter)="setMouseHoverRow(i)"
+                (mouseleave)="setMouseHoverRow(-1)"
+                (click)="removeMember(i)"
+                matTooltip="Teilnehmer löschen">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </tr>
         
-      </table>
-
-      <button mat-icon-button (click)="addMember()">
+    </table>
+      
+      <button mat-icon-button
+              (click)="addMember()"
+              matTooltip="Teilnehmer hinzufügen">
         <mat-icon>person_add</mat-icon>
       </button>
-
+      
+      <div>
+        <button mat-button (click)="navigateBack()">Abbrechen</button>
+        <button mat-button
+                (click)="saveForm()"
+                [disabled]="form.invalid"
+        >Speichern</button>
+      </div>
   </form>
-
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Abbrechen</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Speichern</button>
-</mat-dialog-actions>
+    
+</div>
