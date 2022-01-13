@@ -1,12 +1,5 @@
 <h2 mat-dialog-title>Gruppen Editor</h2>
 <div class="group">
-
-  {{ form.value|json }}
-  
-  <!-- <mat-form-field appearance="legacy">
-    <mat-label>Gruppenname</mat-label>
-    <input matInput placeholder="Gruppenname" [(ngModel)]="groupName">
-  </mat-form-field> -->
   
   <form [formGroup]="form">
     <mat-form-field appearance="legacy">
@@ -18,7 +11,7 @@
       <tr formArrayName="titles">
         <th *ngFor="let title of titles.controls; index as i"
             [class.hoverColumn]="i == hoverColumn"
-            [class.borderBottom]="i == hoverColumn && members.length == 0">
+            [class.borderBottom]="i == hoverColumn && memberValuesArrays.length == 0">
           
           <div class="table-header">
             <button (mouseenter)="setMouseHoverColumn(i)"
@@ -42,8 +35,7 @@
               
       </tr>
         
-      <!-- <ng-container formArrayName="members"></ng-container> -->
-      <tr *ngFor="let memberValues of members.controls; index as i;
+      <tr *ngFor="let memberValues of memberValuesArrays.controls; index as i;
                   last as lastColumn;
                   first as firstColumn" >
         <td [class.hoverColumn]="j == hoverColumn"

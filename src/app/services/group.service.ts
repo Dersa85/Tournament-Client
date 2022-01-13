@@ -1,20 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription, Observable } from 'rxjs';
 import { Group, Groups } from '../interfaces/groups-interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GroupsService {
+export class GroupService {
 
   groups$: BehaviorSubject<Groups> = new BehaviorSubject({});
+  
+  groupSubscription?: Subscription;
+
   constructor(
     private socket: Socket
   ) {
     socket.on('allGroups', (groups: any) => {
       this.groups$.next(groups);
     })
+
+    
   }
 
   get groups(): BehaviorSubject<Groups> {
@@ -24,5 +29,6 @@ export class GroupsService {
   createNewGroup(group: Group) {
     this.socket.emit('createNewGroup', group);
   }
+
 
 }

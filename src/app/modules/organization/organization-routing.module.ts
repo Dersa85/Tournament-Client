@@ -14,6 +14,10 @@ const routes: Routes = [
     component: GroupEditorComponent
   },
   {
+    path: 'group-editor/:id',
+    component: GroupEditorComponent
+  },
+  {
     path: 'group/:id',
     component: GroupComponent
   }

@@ -6,12 +6,12 @@ export interface Groups {
 
 export interface Group {
     groupName: string;
-    title : string[];
-    members: Member[];
+    titles : string[];
+    memberValuesArrays: string[][];
 }
 
 export interface Member {
-    values: string[];
+    // values: string[];
 }
 
 

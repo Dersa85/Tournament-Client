@@ -1,5 +1,5 @@
 import { MatDialog } from '@angular/material/dialog';
-import { GroupsService } from './../../services/groups.service';
+import { GroupService } from '../../services/group.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Socket } from 'ngx-socket-io';
@@ -16,7 +16,7 @@ export class OrganizationComponent {
   groups$: BehaviorSubject<Groups>;
 
   constructor(
-    private groupService: GroupsService,
+    private groupService: GroupService,
     private router: Router,
     private route: ActivatedRoute,
     private socket: Socket
@@ -30,7 +30,10 @@ export class OrganizationComponent {
   }
 
   openGroup(id: string) : void {
-    console.log(id);
-    
+    this.router.navigate(['group', id], {relativeTo: this.route})
+  }
+
+  editGroup(id: string): void {
+    this.router.navigate(['group-editor', id], {relativeTo: this.route})
   }
 }
