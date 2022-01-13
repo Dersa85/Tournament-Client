@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CategorysEditorComponent } from './categorys-editor.component';
+import { GroupEditorComponent } from './group-editor.component';
 
-describe('CategorysEditorComponent', () => {
-  let component: CategorysEditorComponent;
-  let fixture: ComponentFixture<CategorysEditorComponent>;
+describe('GroupEditorComponent', () => {
+  let component: GroupEditorComponent;
+  let fixture: ComponentFixture<GroupEditorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CategorysEditorComponent ]
+      declarations: [ GroupEditorComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CategorysEditorComponent);
+    fixture = TestBed.createComponent(GroupEditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -3,6 +3,8 @@ import { GroupsService } from './../../services/groups.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Socket } from 'ngx-socket-io';
+import { Groups } from 'src/app/interfaces/groups-interfaces';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-organization',
@@ -11,7 +13,7 @@ import { Socket } from 'ngx-socket-io';
 })
 export class OrganizationComponent {
 
-  groups$: any;
+  groups$: BehaviorSubject<Groups>;
 
   constructor(
     private groupService: GroupsService,
@@ -24,7 +26,11 @@ export class OrganizationComponent {
   }
 
   goToCategoryEditor() {
-    this.router.navigate(['categories'], {relativeTo: this.route})
+    this.router.navigate(['group-editor'], {relativeTo: this.route})
   }
 
+  openGroup(id: string) : void {
+    console.log(id);
+    
+  }
 }

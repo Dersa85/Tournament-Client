@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { BehaviorSubject } from 'rxjs';
-import { Groups } from '../interfaces/groups-interfaces';
+import { Group, Groups } from '../interfaces/groups-interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +17,12 @@ export class GroupsService {
     })
   }
 
-  get groups() {
+  get groups(): BehaviorSubject<Groups> {
     return this.groups$
   }
 
-  createNewGroup(groupName: string, group: any) {
-    this.socket.emit('createNewGroup', groupName, group);
+  createNewGroup(group: Group) {
+    this.socket.emit('createNewGroup', group);
   }
 
 }

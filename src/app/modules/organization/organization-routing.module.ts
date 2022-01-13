@@ -1,7 +1,8 @@
-import { CategorysEditorComponent } from './categorys-editor/categorys-editor.component';
+import { GroupEditorComponent } from './group-editor/group-editor.component';
 import { OrganizationComponent } from './organization.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { GroupComponent } from './group/group.component';
 
 const routes: Routes = [
   {
@@ -9,8 +10,12 @@ const routes: Routes = [
     component: OrganizationComponent
   },
   {
-    path: 'categories',
-    component: CategorysEditorComponent
+    path: 'group-editor',
+    component: GroupEditorComponent
+  },
+  {
+    path: 'group/:id',
+    component: GroupComponent
   }
 ];
 

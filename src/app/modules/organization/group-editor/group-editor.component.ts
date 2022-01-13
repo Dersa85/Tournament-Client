@@ -6,11 +6,11 @@ import { Group } from 'src/app/interfaces/groups-interfaces';
 import { GroupsService } from 'src/app/services/groups.service';
 
 @Component({
-  selector: 'app-categorys-editor',
-  templateUrl: './categorys-editor.component.html',
-  styleUrls: ['./categorys-editor.component.sass']
+  selector: 'app-group-editor',
+  templateUrl: './group-editor.component.html',
+  styleUrls: ['./group-editor.component.sass']
 })
-export class CategorysEditorComponent implements OnInit {
+export class GroupEditorComponent implements OnInit {
   
   // groupName = '';
   
@@ -100,11 +100,8 @@ export class CategorysEditorComponent implements OnInit {
   }
 
   saveForm() {
-    const group: Group = {
-      titles: this.titles.value,
-      members: this.members.value
-    }
-    this.groupsService.createNewGroup(this.groupName.value, group);
+    const group: Group = this.form.value
+    this.groupsService.createNewGroup(group);
     this.navigateBack();
   }
 
