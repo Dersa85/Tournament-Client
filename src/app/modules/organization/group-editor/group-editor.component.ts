@@ -147,7 +147,12 @@ export class GroupEditorComponent implements OnInit {
   }
 
   navigateBack() {
-    this.router.navigate(['./..'], {relativeTo: this.route})
+    const id: string = this.route.snapshot.params.id
+    let navigateRelative = './..'; // if new group move once back
+    
+    if (id) { navigateRelative = './../..'; } // if edit move double back
+    
+    this.router.navigate([navigateRelative], {relativeTo: this.route})
   }
 
   setMouseHoverRow(value: number): void {
