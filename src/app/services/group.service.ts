@@ -30,5 +30,8 @@ export class GroupService {
     this.socket.emit('createNewGroup', group);
   }
 
+  editGroup(id: string, group: Group): void {
+    this.socket.emit('editGroup', id, group);
+  }
 
 }

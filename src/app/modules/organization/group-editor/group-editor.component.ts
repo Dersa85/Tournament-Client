@@ -141,8 +141,13 @@ export class GroupEditorComponent implements OnInit {
   }
 
   saveForm() {
-    const group: Group = this.form.value
-    this.groupService.createNewGroup(group);
+    const id: string = this.route.snapshot.params.id
+    const group: Group = this.form.value;
+    if (id) {
+      this.groupService.editGroup(id, group);
+    } else {
+      this.groupService.createNewGroup(group);
+    }
     this.navigateBack();
   }
 
