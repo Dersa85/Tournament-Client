@@ -7,8 +7,16 @@
             <div class="board" *ngFor="let bestOf3Board of allBestOf3Boards | keyvalue">
                 <h3>{{bestOf3Board.value.name}}:</h3>
                 <div>
-                    <button mat-stroked-button color="primary" routerLink="./best-of-3/control/{{bestOf3Board.key}}">Steuerung</button>
-                    <button mat-stroked-button color="primary" routerLink="./best-of-3/scoreboard/{{bestOf3Board.key}}">Punktetafel</button>
+                    <button *ngIf="authService.isLogged | async"
+                            mat-stroked-button
+                            color="primary"
+                            routerLink="./best-of-3/control/{{bestOf3Board.key}}"
+                            >Steuerung</button>
+                            
+                    <button mat-stroked-button
+                            color="primary"
+                            routerLink="./best-of-3/scoreboard/{{bestOf3Board.key}}"
+                            >Punktetafel</button>
                 </div>
             </div>
         </ng-container>
@@ -19,14 +27,21 @@
             <h2>-Team Point-</h2>
             <div class="board" *ngFor="let teamPointBoard of allTeamPointBoards | keyvalue">
                 <h3>{{teamPointBoard.value.name}}</h3>
-                <button routerLink="./team-point/control/{{teamPointBoard.key}}">Steuerung</button>
-                <button routerLink="team-point/scoreboard/{{teamPointBoard.key}}">Punktetafel</button>
+                <button *ngIf="authService.isLogged | async"
+                        mat-stroked-button
+                        color="primary"
+                        routerLink="./team-point/control/{{teamPointBoard.key}}"
+                        >Steuerung</button>
+                <button mat-stroked-button
+                        color="primary"
+                        routerLink="team-point/scoreboard/{{teamPointBoard.key}}"
+                        >Punktetafel</button>
             </div>
         </ng-container>
     </ng-container>
     
     <div class="nav-btn-container">
-        <button mat-raised-button (click)="openNewBoardDialog()">Neues Board</button>
+        <button *ngIf="authService.isLogged | async" mat-raised-button (click)="openNewBoardDialog()">Neues Board</button>
         <button mat-raised-button color="accent" (click)="navigateBack()">Zurück</button>
     </div>
     

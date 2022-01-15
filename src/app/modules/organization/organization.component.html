@@ -3,12 +3,10 @@
 
 <div *ngFor="let group of groups$ | async | keyvalue">
     <button class="group-btn" (click)="openGroup(group.key)" mat-stroked-button>{{ group.value.groupName }}</button>
-    <button mat-icon-button (click)="editGroup(group.key)">
+    <button *ngIf="authService.isLogged | async" mat-icon-button (click)="editGroup(group.key)">
         <mat-icon>edit</mat-icon>
     </button>
 </div>
 
-<button class="new-btn" mat-raised-button (click)="goToCategoryEditor()">Neue Kategorie</button>
-
-
-{{ groups$ | async | json }}
+<button *ngIf="authService.isLogged | async" class="control-btn" mat-raised-button (click)="goToCategoryEditor()">Neue Kategorie</button>
+<button class="control-btn" mat-raised-button color="accent" (click)="navigateBack()">Zurück</button>

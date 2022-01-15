@@ -1,0 +1,20 @@
+
+<h1>Einloggen</h1>
+
+<form (submit)="loggin()" [formGroup]="form">
+    <mat-form-field appearance="fill">
+        <mat-label>Benutzername</mat-label>
+        <input matInput placeholder="Benutzername" [formControl]="name" required>
+        <mat-error *ngIf="name.invalid">Name eingeben</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Passwort</mat-label>
+        <input matInput placeholder="Passwort" [formControl]="password" required>
+        <mat-error *ngIf="password.invalid">Passwort eingeben</mat-error>
+    </mat-form-field>
+    <mat-dialog-actions align="center">
+        <button mat-button mat-dialog-close>Abbrechen</button>
+        <button [disabled]="form.invalid" mat-button>Einloggen</button>
+    </mat-dialog-actions>
+</form>
+

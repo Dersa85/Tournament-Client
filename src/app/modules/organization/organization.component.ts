@@ -1,10 +1,10 @@
-import { MatDialog } from '@angular/material/dialog';
 import { GroupService } from '../../services/group.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Socket } from 'ngx-socket-io';
 import { Groups } from 'src/app/interfaces/groups-interfaces';
 import { BehaviorSubject } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-organization',
@@ -19,7 +19,8 @@ export class OrganizationComponent {
     private groupService: GroupService,
     private router: Router,
     private route: ActivatedRoute,
-    private socket: Socket
+    private socket: Socket,
+    public authService: AuthService
   ) {
     this.socket.emit('getAllGroups');
     this.groups$ = this.groupService.groups;
@@ -35,5 +36,9 @@ export class OrganizationComponent {
 
   editGroup(id: string): void {
     this.router.navigate(['group-editor', id], {relativeTo: this.route})
+  }
+
+  navigateBack(): void {
+    this.router.navigate(['./..'], {relativeTo: this.route})
   }
 }

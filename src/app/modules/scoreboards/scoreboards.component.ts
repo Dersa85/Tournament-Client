@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NewBoardDialogComponent } from '../../shared/dialog/new-board-dialog/new-board-dialog.component';
 import { BestOf3Boards, TeamPointBoards } from 'src/app/interfaces/boards-interfaces';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-overview',
@@ -17,6 +18,7 @@ export class ScoreboardsComponent {
   allTeamPointBoards$: Observable<TeamPointBoards> = this.socket.fromEvent(`allTeamPointBoards`);
  
   constructor(
+    public authService: AuthService,
     private socket: Socket,
     public dialog: MatDialog,
     private router: Router,

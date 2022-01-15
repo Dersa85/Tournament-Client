@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main.component';
+import { DialogModule } from 'src/app/shared/dialog/dialog.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { MainComponent } from './main.component';
   imports: [
     CommonModule,
     MainRoutingModule,
-    MaterialModule
+    MaterialModule,
+    DialogModule
   ]
 })
 export class MainModule { }
