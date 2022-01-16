@@ -13,7 +13,7 @@ export class NewBoardDialogComponent {
 
   form = this.fb.group({
     name: ['', [Validators.required]],
-    board: ['BestOf3Board', [Validators.required]]
+    board: ['BestOf5Board', [Validators.required]]
   })
   
   constructor(

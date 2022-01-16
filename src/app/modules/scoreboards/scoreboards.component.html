@@ -1,21 +1,21 @@
 <div class="main">
     <h1>Punktetafel Übersicht</h1>
     
-    <ng-container *ngIf="allBestOf3Boards$ | async as allBestOf3Boards">
-        <ng-container *ngIf="(allBestOf3Boards | json) != ({} | json)">
-            <h2>-Best of 3-</h2>
-            <div class="board" *ngFor="let bestOf3Board of allBestOf3Boards | keyvalue">
-                <h3>{{bestOf3Board.value.name}}:</h3>
+    <ng-container *ngIf="allBestOf5Boards$ | async as allBestOf5Boards">
+        <ng-container *ngIf="(allBestOf5Boards | json) != ({} | json)">
+            <h2>-Best of 5-</h2>
+            <div class="board" *ngFor="let bestOf5Board of allBestOf5Boards | keyvalue">
+                <h3>{{bestOf5Board.value.name}}:</h3>
                 <div>
                     <button *ngIf="authService.isLogged | async"
                             mat-stroked-button
                             color="primary"
-                            routerLink="./best-of-3/control/{{bestOf3Board.key}}"
+                            routerLink="./best-of-5/control/{{bestOf5Board.key}}"
                             >Steuerung</button>
                             
                     <button mat-stroked-button
                             color="primary"
-                            routerLink="./best-of-3/scoreboard/{{bestOf3Board.key}}"
+                            routerLink="./best-of-5/scoreboard/{{bestOf5Board.key}}"
                             >Punktetafel</button>
                 </div>
             </div>
@@ -44,13 +44,5 @@
         <button *ngIf="authService.isLogged | async" mat-raised-button (click)="openNewBoardDialog()">Neues Board</button>
         <button mat-raised-button color="accent" (click)="navigateBack()">Zurück</button>
     </div>
-    
-    <!-- <br>
-        <br>
-{{allBestOf3Boards$ | async | json}}
-<br>
-----------------------------------------
-<br>
-{{allTeamPointBoards$ | async | json}} -->
 
 </div>

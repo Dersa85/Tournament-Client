@@ -18,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class BestOf3RoutingModule { }
+export class BestOf5RoutingModule { }

@@ -8,8 +8,8 @@ const routes: Routes = [
     component: ScoreboardsComponent
   },
   {
-    path: 'best-of-3',
-    loadChildren: () => import('./best-of-3/best-of-3.module').then(m => m.BestOf3Module),
+    path: 'best-of-5',
+    loadChildren: () => import('./best-of-5/best-of-5.module').then(m => m.BestOf5Module),
   },
   {
     path: 'team-point',

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { NewBoardDialogComponent } from '../../shared/dialog/new-board-dialog/new-board-dialog.component';
-import { BestOf3Boards, TeamPointBoards } from 'src/app/interfaces/boards-interfaces';
+import { BestOf5Boards, TeamPointBoards } from 'src/app/interfaces/boards-interfaces';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -14,7 +14,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ScoreboardsComponent {
 
-  allBestOf3Boards$: Observable<BestOf3Boards> = this.socket.fromEvent(`allBestOf3Boards`);
+  allBestOf5Boards$: Observable<BestOf5Boards> = this.socket.fromEvent(`allBestOf5Boards`);
   allTeamPointBoards$: Observable<TeamPointBoards> = this.socket.fromEvent(`allTeamPointBoards`);
  
   constructor(

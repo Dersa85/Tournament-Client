@@ -1,29 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { BestOf3RoutingModule } from './best-of-3-routing.module';
-import { BestOf3ScoreboardComponent } from './best-of-3-scoreboard/best-of-3-scoreboard.component';
+import { BestOf5RoutingModule } from './best-of-5-routing.module';
+import { BestOf5ScoreboardComponent } from './best-of-5-scoreboard/best-of-5-scoreboard.component';
 import { ControlComponent } from './control/control.component';
 import { ScoreboardContainerComponent } from './scoreboard-container/scoreboard-container.component';
 import { MaterialModule } from 'src/app/shared/material/material.module';
-import { PipesModule } from './../../../shared/pipes/pipes.module';
+import { PipesModule } from '../../../shared/pipes/pipes.module';
 import { ScoreboardControlsModule } from 'src/app/shared/scoreboard/scoreboard.module';
-import { BestOf3CustomControlComponent } from './best-of3-custom-control/best-of3-custom-control.component';
+import { BestOf5CustomControlComponent } from './best-of-5-custom-control/best-of-5-custom-control.component';
 
 
 @NgModule({
   declarations: [
-    BestOf3ScoreboardComponent,
+    BestOf5ScoreboardComponent,
     ControlComponent,
     ScoreboardContainerComponent,
-    BestOf3CustomControlComponent
+    BestOf5CustomControlComponent
   ],
   imports: [
     CommonModule,
-    BestOf3RoutingModule,
+    BestOf5RoutingModule,
     PipesModule,
     MaterialModule,
     ScoreboardControlsModule
   ]
 })
-export class BestOf3Module { }
+export class BestOf5Module { }

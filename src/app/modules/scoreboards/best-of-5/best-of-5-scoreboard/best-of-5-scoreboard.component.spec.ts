@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BestOf3ScoreboardComponent } from './best-of-3-scoreboard.component';
+import { BestOf5ScoreboardComponent } from './best-of-5-scoreboard.component';
 
-describe('BestOf3ScoreboardComponent', () => {
-  let component: BestOf3ScoreboardComponent;
-  let fixture: ComponentFixture<BestOf3ScoreboardComponent>;
+describe('BestOf5ScoreboardComponent', () => {
+  let component: BestOf5ScoreboardComponent;
+  let fixture: ComponentFixture<BestOf5ScoreboardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BestOf3ScoreboardComponent ]
+      declarations: [ BestOf5ScoreboardComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BestOf3ScoreboardComponent);
+    fixture = TestBed.createComponent(BestOf5ScoreboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

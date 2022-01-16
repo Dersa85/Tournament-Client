@@ -1,15 +1,15 @@
 import { Component, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable} from 'rxjs';
-import { BestOf3Board } from 'src/app/interfaces/boards-interfaces';
+import { BestOf5Board } from 'src/app/interfaces/boards-interfaces';
 import { BoardService } from 'src/app/services/board.service';
 
 @Component({
-  selector: 'app-best-of-3-scoreboard',
-  templateUrl: './best-of-3-scoreboard.component.html',
-  styleUrls: ['./best-of-3-scoreboard.component.sass']
+  selector: 'app-best-of-5-scoreboard',
+  templateUrl: './best-of-5-scoreboard.component.html',
+  styleUrls: ['./best-of-5-scoreboard.component.sass']
 })
-export class BestOf3ScoreboardComponent {
+export class BestOf5ScoreboardComponent {
   ROUND_COLORS = [
     'WHITE',  // neutral
     'RED',    // team 1 win
@@ -17,9 +17,9 @@ export class BestOf3ScoreboardComponent {
     'YELLOW'  // draw
   ]
 
-  BORD_TYPE = 'BestOf3Board';
+  BORD_TYPE = 'BestOf5Board';
 
-  board$!: Observable<BestOf3Board>;
+  board$!: Observable<BestOf5Board>;
   scale$!: Observable<string>;
 
   constructor(

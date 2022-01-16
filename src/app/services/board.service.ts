@@ -15,7 +15,7 @@ export class BoardService {
   SCOREBOARD_WIDTH = 320;
 
   BOARD_TYPES = [
-    'BestOf3Board',
+    'BestOf5Board',
     'TeamPointBoard'
   ]
 
