@@ -48,7 +48,7 @@
                     last as lastRow;
                     first as firstRow">
           <mat-form-field appearance="legacy">
-            <mat-label>Wert</mat-label>
+            <mat-label>{{titles.controls[j].value}}</mat-label>
             <input matInput placeholder="Wert" [formControl]="getMemberValue(i, j)">
           </mat-form-field>
         </td>

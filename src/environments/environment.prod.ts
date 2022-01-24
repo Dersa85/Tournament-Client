@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   socketConfig : {
-    url: 'http://raspberrypi:7878',
-    options: {}
+    url: 'http://localhost:7878',
+    options: { transports : ['websocket'] }
   }
 };
